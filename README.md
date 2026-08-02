@@ -67,10 +67,17 @@ cd qa_admin_frontend
 ./create_build.sh
 ```
 
-### 2. Start PM2 Production Process
-Run the standalone server with PM2 on port 3001:
+### 2. Deployment & Starting PM2 Production Process
+Deploy the compiled bundle to the target server directory `/usr/share/Czentrix/qa_admin_frontend`, install production dependencies, and start the application:
 
 ```bash
+# 1. Navigate to the deployment directory
+cd /usr/share/Czentrix/qa_admin_frontend
+
+# 2. Install production dependencies
+npm install --production
+
+# 3. Start the application using PM2 on port 3001
 PORT=3001 pm2 start .next/standalone/qa_admin_frontend/server.js --name "qa-frontend"
 ```
 

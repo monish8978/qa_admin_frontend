@@ -15,59 +15,7 @@ Modern, multi-tenant Web Interface for the **SmartQA Evaluation Suite**. Built w
 
 ---
 
-## ⚙️ Environment Configuration (`.env`)
-
-Create a `.env` file in the `qa_admin_frontend` folder or the root directory:
-
-```env
-# Runs the application in development/production mode
-NODE_ENV=development
-
-# The port where the frontend Next.js dev server runs
-PORT=3001
-
-# The address of the backend server (FastAPI) where Next.js forwards API requests
-API_URL=http://localhost:8005
-
-# Client-facing API URL prefix. Prevents CORS errors by proxying browser requests
-NEXT_PUBLIC_API_URL=/api/v1
-```
-
-> [!NOTE]
-> IP addresses do **NOT** need to be hardcoded in the client code. The frontend uses relative paths (`/api/v1`) which automatically bind to whichever server IP or domain the user visits in their browser.
-
----
-
-## 💻 Development Setup
-
-This project is part of a **pnpm monorepo**. You must compile the shared package before starting the development server.
-
-```bash
-# 1. From the monorepo root directory, build the shared package
-pnpm --filter @qa/shared build
-
-# 2. Start the Next.js development server
-pnpm run dev
-```
-
-The frontend application will be available at: **`http://localhost:3001`**
-
----
-
-## 📦 Production Build & Deployment
-
-### 1. Build the Standalone Production Bundle
-Use the automated production build script to compile TypeScript, verify types, link assets, and create the standalone archive:
-
-```bash
-# Go to the frontend directory
-cd qa_admin_frontend
-
-# Run the automated build script
-./create_build.sh
-```
-
-### 2. Deployment & Starting PM2 Production Process
+### 1. Deployment & Starting PM2 Production Process
 Deploy the compiled bundle to the target server directory `/usr/share/Czentrix/qa_admin_frontend`, install production dependencies, and start the application:
 
 ```bash
@@ -81,7 +29,7 @@ npm install --production
 PORT=3001 pm2 start .next/standalone/qa_admin_frontend/server.js --name "qa-frontend"
 ```
 
-### 3. Server Management Commands
+### 2. Server Management Commands
 
 ```bash
 # Check running status
